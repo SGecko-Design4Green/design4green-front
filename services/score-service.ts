@@ -1,23 +1,5 @@
 import mockedCities from '../constants/cities-mock.json';
 
-const mockedCityPages: Array<Record<string, Score>> = Object.entries(mockedCities)
-    .reduce(
-        ([name, score]: [string, Score], allPages: any) => {
-
-            const lastPage: Record<string, Score> = allPages[allPages.length - 1];
-
-            if (Object.keys(lastPage).length < 5) {
-                lastPage[name] = score;
-            }
-            else {
-                allPages.push({[name]: score});
-            }
-
-            return allPages;
-        },
-        [{}]
-    );
-
 export interface Score {
     readonly informationAccess: number;
     readonly numericInterfacesAccess: number;
@@ -53,7 +35,7 @@ class FakeScoreService implements ScoreProvider {
                     numericCompetencies: 300,
                 }
             },
-            innerInformation: mockedCityPages[innerPage ?? 0]
+            innerInformation: mockedCities[innerPage ?? 0]
         }), this.delay))
     }
 
@@ -92,4 +74,4 @@ class FakeScoreService implements ScoreProvider {
 
 }
 
-export const scoreService: ScoreProvider = new FakeScoreService(0);
+export const scoreService: ScoreProvider = new FakeScoreService(800);

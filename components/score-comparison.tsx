@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { QueryStatus, useQuery } from 'react-query';
 import { useTable } from 'react-table'
 import { scoreService, ScoreInfo, Score } from '../services/score-service';
@@ -19,41 +19,72 @@ export interface CurrentEntityComparisonProps {
 }
 
 export function CurrentEntityComparison({ region, department, city, neighbour }: CurrentEntityComparisonProps) {
-    return <>{
-        region
-            ? department
-                ? city
-                    ? neighbour
-                        ? <>{/*NeihgbourScoreComparison*/}</>
-                        : <>{/*CityScoreComparison*/}</>
-                    : <DepartmentScoreComparison />
-                : <RegionScoreComparison />
-            : <></>
-    }</>
+
+    if (region) {
+        if (department) {
+            if (city) {
+                if (neighbour) {
+                    return <>{/*NeihgbourScoreComparison*/}</>;
+                }
+                return <>{/*CityScoreComparison*/}</>;
+            }
+            return <DepartmentScoreComparison />;
+        }
+        return <RegionScoreComparison />;
+    }
+
+    return <></>;
 }
 
 export function DepartmentScoreComparison() {
-    const { data: scoreInfo, status } = useQuery<ScoreInfo>(`score-infos-Loire-Atlantique`, () => scoreService.getDepartmentScore('Loire Atlantique'));
+    const [page, setPage] = useState(1);
+    const { data: _scoreInfo, status} = useQuery<ScoreInfo>(`score-infos-Loire-Atlantique-page-${page}`, () => scoreService.getDepartmentScore('Loire Atlantique', page));
 
-    return <ScoreComparison scoreInfo={scoreInfo} status={status} />;
+    const scoreInfo = useRef(_scoreInfo);
+
+    useEffect(() => {
+        if (_scoreInfo) {
+            scoreInfo.current = _scoreInfo;
+        }
+    }, [_scoreInfo]);
+
+    if (!scoreInfo.current) {
+        return <></>;
+    }
+
+    return <ScoreComparison
+        scoreInfo={scoreInfo.current}
+        onNextPage={() => setPage(p => p + 1)}
+        page={page}
+        status={status}
+    />;
 }
 
 export function RegionScoreComparison() {
-    const { data: scoreInfo, status } = useQuery<ScoreInfo>(`score-infos-Bretagne`, () => scoreService.getRegionScore('Bretagne'));
+    const { data: _scoreInfo } = useQuery<ScoreInfo>(`score-infos-Bretagne`, () => scoreService.getRegionScore('Bretagne'));
 
-    return <ScoreComparison scoreInfo={scoreInfo} status={status} />;
+    const scoreInfo = useRef(_scoreInfo);
+
+    useEffect(() => {
+        if (_scoreInfo) {
+            scoreInfo.current = _scoreInfo;
+        }
+    }, [_scoreInfo]);
+
+
+    if (!scoreInfo.current) {
+        return <></>;
+    }
+
+    return <ScoreComparison scoreInfo={scoreInfo.current} />;
 }
 
-function ScoreComparison({ scoreInfo, status }: { scoreInfo: ScoreInfo, status: QueryStatus }) {
+function ScoreComparison({ scoreInfo, page, onNextPage, status }: { scoreInfo: ScoreInfo, page?: number, onNextPage?: () => void, status: QueryStatus}) {
     const [tab, setTab] = useState<Tab>(Tab.ASIDE);
 
     const handleTabClick = (event: any) => {
         setTab(event.target.innerText);
     };
-
-    if (!scoreInfo || status !== QueryStatus.Success) {
-        return <></>;
-    }
 
     return (
         <>
@@ -66,6 +97,12 @@ function ScoreComparison({ scoreInfo, status }: { scoreInfo: ScoreInfo, status: 
                     : <ComparisonTable scoreInfo={scoreInfo.innerInformation} />
                 }
             </div>
+            {
+                page && onNextPage && <>
+                    <div>Page {page}</div>
+                    {status !== QueryStatus.Loading && <button onClick={() => onNextPage()}>Next</button>}
+                </>
+            }
 
         </>
     )

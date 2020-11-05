@@ -1,626 +1,668 @@
-{
-    "44170 - Abbaretz": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44140 - Aigrefeuille-sur-Maine": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44150 - Ancenis-Saint-Géréon": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44410 - Assérac": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44460 - Avessac": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44115 - Basse-Goulaine": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44740 - Batz-sur-Mer": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44160 - Besné": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44130 - Blain": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44830 - Bouaye": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44260 - Bouée": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44340 - Bouguenais": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44190 - Boussay": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44130 - Bouvron": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44830 - Brains": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44750 - Campbon": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44470 - Carquefou": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44390 - Casson": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44690 - Château-Thébaud": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44110 - Châteaubriant": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44320 - Chaumes-en-Retz": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44320 - Chauvé": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44640 - Cheix-en-Retz": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44190 - Clisson": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44290 - Conquereuil": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44650 - Corcoué-sur-Logne": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44360 - Cordemais": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44560 - Corsept": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44220 - Couëron": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44521 - Couffé": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44160 - Crossac": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44590 - Derval": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44450 - Divatte-sur-Loire": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44480 - Donges": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44530 - Drefféac": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44110 - Erbray": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44130 - Fay-de-Bretagne": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44460 - Fégréac": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44660 - Fercé": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44320 - Frossay": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44140 - Geneston": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44190 - Gétigné": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44190 - Gorges": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44520 - Grand-Auverné": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44119 - Grandchamps-des-Fontaines": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44290 - Guémené-Penfao": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44530 - Guenrouet": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44350 - Guérande": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44115 - Haute-Goulaine": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44410 - Herbignac": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44810 - Héric": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44610 - Indre": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44520 - Issé": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44170 - Jans": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44440 - Joué-sur-Erdre": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44670 - Juigné-des-Moutiers": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44500 - La Baule-Escoublac": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44760 - La Bernerie-en-Retz": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44430 - La Boissière-du-Doré": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44410 - La Chapelle-des-Marais": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44670 - La Chapelle-Glain": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44330 - La Chapelle-Heulin": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44260 - La Chapelle-Launay": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44240 - La Chapelle-sur-Erdre": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44810 - La Chevallerais": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44118 - La Chevrolière": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44170 - La Grigonnais": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44690 - La Haie-Fouassière": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44310 - La Limouzinière": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44270 - La Marne": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44520 - La Meilleraye-de-Bretagne": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44620 - La Montagne": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44770 - La Plaine-sur-Mer": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44140 - La Planche": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44330 - La Regrippière": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44430 - La Remaudière": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44522 - La Roche-Blanche": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44420 - La Turballe": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44260 - Lavau-sur-Loire": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44140 - Le Bignon": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44850 - Le Cellier": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44490 - Le Croisic": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44130 - Le Gâvre": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44430 - Le Landreau": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44430 - Le Loroux-Bottereau": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44330 - Le Pallet": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44640 - Le Pellerin": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44540 - Le Pin": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44510 - Le Pouliguen": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44360 - Le Temple-de-Bretagne": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44650 - Legé": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44760 - Les Moutiers-en-Retz": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44840 - Les Sorinières": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44390 - Les Touches": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44850 - Ligné": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44370 - Loireauxence": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44110 - Louisfert": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44590 - Lusanger": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44270 - Machecoul-Saint-Même": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44690 - Maisdon-sur-Sèvre": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44260 - Malville": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44170 - Marsac-sur-Don": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44290 - Massérac": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
-    },
-    "44470 - Mauves-sur-Loire": {
-        "informationAccess": 123,
-        "numericInterfacesAccess": 321,
-        "administrativeCompetencies": 456,
-        "numericCompetencies": 654
+[
+    {
+        "44170 - Abbaretz": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44140 - Aigrefeuille-sur-Maine": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44150 - Ancenis-Saint-Géréon": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44410 - Assérac": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44460 - Avessac": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44115 - Basse-Goulaine": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44740 - Batz-sur-Mer": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44160 - Besné": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44130 - Blain": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44830 - Bouaye": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44260 - Bouée": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44340 - Bouguenais": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44190 - Boussay": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44130 - Bouvron": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44830 - Brains": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44750 - Campbon": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44470 - Carquefou": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44390 - Casson": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44690 - Château-Thébaud": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44110 - Châteaubriant": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44320 - Chaumes-en-Retz": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44320 - Chauvé": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44640 - Cheix-en-Retz": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44190 - Clisson": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44290 - Conquereuil": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44650 - Corcoué-sur-Logne": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44360 - Cordemais": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44560 - Corsept": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44220 - Couëron": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44521 - Couffé": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44160 - Crossac": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44590 - Derval": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44450 - Divatte-sur-Loire": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44480 - Donges": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44530 - Drefféac": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44110 - Erbray": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44130 - Fay-de-Bretagne": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44460 - Fégréac": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44660 - Fercé": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44320 - Frossay": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44140 - Geneston": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44190 - Gétigné": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44190 - Gorges": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44520 - Grand-Auverné": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44119 - Grandchamps-des-Fontaines": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44290 - Guémené-Penfao": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44530 - Guenrouet": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44350 - Guérande": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44115 - Haute-Goulaine": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44410 - Herbignac": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44810 - Héric": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44610 - Indre": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44520 - Issé": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44170 - Jans": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44440 - Joué-sur-Erdre": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44670 - Juigné-des-Moutiers": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44500 - La Baule-Escoublac": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44760 - La Bernerie-en-Retz": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44430 - La Boissière-du-Doré": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44410 - La Chapelle-des-Marais": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44670 - La Chapelle-Glain": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44330 - La Chapelle-Heulin": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44260 - La Chapelle-Launay": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44240 - La Chapelle-sur-Erdre": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44810 - La Chevallerais": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44118 - La Chevrolière": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44170 - La Grigonnais": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44690 - La Haie-Fouassière": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44310 - La Limouzinière": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44270 - La Marne": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44520 - La Meilleraye-de-Bretagne": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44620 - La Montagne": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44770 - La Plaine-sur-Mer": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44140 - La Planche": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44330 - La Regrippière": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44430 - La Remaudière": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44522 - La Roche-Blanche": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44420 - La Turballe": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44260 - Lavau-sur-Loire": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44140 - Le Bignon": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44850 - Le Cellier": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44490 - Le Croisic": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44130 - Le Gâvre": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44430 - Le Landreau": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44430 - Le Loroux-Bottereau": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44330 - Le Pallet": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44640 - Le Pellerin": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44540 - Le Pin": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44510 - Le Pouliguen": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44360 - Le Temple-de-Bretagne": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44650 - Legé": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44760 - Les Moutiers-en-Retz": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44840 - Les Sorinières": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44390 - Les Touches": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44850 - Ligné": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44370 - Loireauxence": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44110 - Louisfert": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44590 - Lusanger": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44270 - Machecoul-Saint-Même": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44690 - Maisdon-sur-Sèvre": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
+    },
+    {
+        "44260 - Malville": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44170 - Marsac-sur-Don": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44290 - Massérac": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        },
+        "44470 - Mauves-sur-Loire": {
+            "informationAccess": 123,
+            "numericInterfacesAccess": 321,
+            "administrativeCompetencies": 456,
+            "numericCompetencies": 654
+        }
     }
-}
+]

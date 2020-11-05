@@ -1,5 +1,5 @@
 import { useCombobox } from "downshift";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { QueryStatus } from "react-query";
 import { Box, Flex } from "rebass";
 import Input from "./presentational/Input";
@@ -8,13 +8,36 @@ import Button from "./presentational/Button";
 export interface SelectProps {
     readonly text: string;
     readonly onSelectedItemChange: (item: any) => void;
-    readonly data?: any[];
+    readonly data?: string[];
     readonly onInputValueChange: (item: any) => void;
     readonly status: QueryStatus
+    readonly value: string;
 }
 
-export function Select({ text, onSelectedItemChange, data, onInputValueChange, status }: SelectProps) {
+export function InMemorySelect(props: Omit<SelectProps, 'status' | 'onInputValueChange' | 'value'>) {
+    const [inputValue, setInputValue] = useState('');
+    const [matchingData, setMatchingData] = useState([...props.data]);
+
+    useEffect(() => {
+        setMatchingData([...props.data]);
+        setInputValue('');
+    }, [props.data]);
+
+    return <Select {...props}
+        data={matchingData}
+        status={QueryStatus.Success}
+        onInputValueChange={(inputValue: string) => {
+            setInputValue(inputValue);
+            setMatchingData(props.data.filter(d => d.toLocaleLowerCase().includes(inputValue.toLocaleLowerCase())))
+        }}
+        value={inputValue}
+    />;
+}
+
+
+export function Select({ text, onSelectedItemChange, data, onInputValueChange, status, value }: SelectProps) {
     const [isInputFocused, setIsInputFocused] = useState(false);
+
 
     const {
         isOpen,
@@ -32,11 +55,12 @@ export function Select({ text, onSelectedItemChange, data, onInputValueChange, s
         },
         onSelectedItemChange: ({ selectedItem }) => {
             onSelectedItemChange(selectedItem);
-        }
+        },
+        inputValue: value
     })
 
-    return <Box sx={{position: 'relative'}} className='no-print'>
-        <label {...getLabelProps()} style={{fontWeight: 'bold'}}>{text}</label>
+    return <Box sx={{ position: 'relative' }} className='no-print'>
+        <label {...getLabelProps()} style={{ fontWeight: 'bold' }}>{text}</label>
         <Flex {...getComboboxProps()} sx={{
             outline: isInputFocused ? 'auto 1px' : undefined,
             outlineColor: 'Medium',
@@ -44,10 +68,10 @@ export function Select({ text, onSelectedItemChange, data, onInputValueChange, s
         }}>
             <Box width={0.85}>
                 <Input
-                {...getInputProps()} 
-                onFocus={() => setIsInputFocused(true)}
-                onBlur={() => setIsInputFocused(false)}
-             />
+                    {...getInputProps()}
+                    onFocus={() => setIsInputFocused(true)}
+                    onBlur={() => setIsInputFocused(false)}
+                />
             </Box>
             <Box width={0.15}>
                 <Button
@@ -69,24 +93,24 @@ export function Select({ text, onSelectedItemChange, data, onInputValueChange, s
             width: '100%',
             overflowY: 'scroll'
         }}
-        ariaHidden={isOpen}
+            ariaHidden={isOpen}
         >
-        {isOpen && status === 'error' && (<>Une erreur est survenue, merci de bien vouloir reessayer</>)}
-        {isOpen && status === 'loading' && (<>Chargement des donnees en cours...</>)}
-        {isOpen &&
-            (data || []).map((item, index) => (
-                <Box
-                    sx={{
-                        padding: '7px',
-                        backgroundColor: highlightedIndex === index ? 'Lighter grey' : 'White',
-                        color: highlightedIndex === index ? 'Almost black' : 'Darker grey'
-                    }}
-                    key={`${item}${index}`}
-                    {...getItemProps({ item: item, index })}
-                >
-                    {item}
-                </Box>
-            ))}
+            {isOpen && status === 'error' && (<>Une erreur est survenue, merci de bien vouloir reessayer</>)}
+            {isOpen && status === 'loading' && (<>Chargement des donnees en cours...</>)}
+            {isOpen &&
+                (data || []).map((item, index) => (
+                    <Box
+                        sx={{
+                            padding: '7px',
+                            backgroundColor: highlightedIndex === index ? 'Lighter grey' : 'White',
+                            color: highlightedIndex === index ? 'Almost black' : 'Darker grey'
+                        }}
+                        key={`${item}${index}`}
+                        {...getItemProps({ item: item, index })}
+                    >
+                        {item}
+                    </Box>
+                ))}
         </Box>
     </Box>;
 }

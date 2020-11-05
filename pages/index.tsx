@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { Box, Flex } from "rebass";
 import CitySelect from "../components/CitySelect";
@@ -12,10 +12,11 @@ import Image from "next/image";
 import ComparisonTable from '../components/ScoreComparison';
 import { MOBILE_WIDTH } from '../constants/constants';
 import { BrowserContextWrapper, useWindow } from "../contexts/browser-context";
+import departments from '../constants/departments.json'
 
-const StatCard = ({label, data }) => {
+const StatCard = ({ label, data }) => {
 
-  const {innerWidth} = useWindow();
+  const { innerWidth } = useWindow();
 
   return <Box bg={'Lighter grey'} px={20} mx={innerWidth < MOBILE_WIDTH ? 0 : 10} width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 2} mb={10} sx={{ height: '190px' }}>
     <h3>{label}</h3>
@@ -39,15 +40,18 @@ const Print = () => {
 }
 
 export default function Home(props) {
-  return <BrowserContextWrapper><BrowserHome {...props}/></BrowserContextWrapper>;
+  return <BrowserContextWrapper><BrowserHome {...props} /></BrowserContextWrapper>;
 }
 
-function BrowserHome({ initialData }) {
+
+function BrowserHome({ initialData, departments }) {
   const [region, setRegion] = useState('');
   const [department, setDepartment] = useState('');
   const [city, setCity] = useState('');
   const [neighbour, setNeighbour] = useState('');
-  const {innerWidth} = useWindow();
+  const { innerWidth } = useWindow();
+
+  const regions = useRef(Object.keys(departments)).current;
 
   const { data, status } = useQuery(`${region}-${department}-${city}-${neighbour}`, () => initialData, {
     initialData
@@ -61,7 +65,7 @@ function BrowserHome({ initialData }) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div style={{ margin: '0 10px' }}>
-      <Image src='/logo-inr.webp' width={300} height={104} alt="logo INR, Institut du Numérique Responsable"/>
+        <Image src='/logo-inr.webp' width={300} height={104} alt="logo INR, Institut du Numérique Responsable" />
         <h1>INDICE NATIONAL DE FRAGILITÉ NUMÉRIQUE</h1>
         <p>La fragilité numérique est identifiée sur des critères liés à l'accès au numérique et sur le niveau de compétences de chacun et chacun.</p>
 
@@ -70,10 +74,10 @@ function BrowserHome({ initialData }) {
 
       <Flex sx={{ flexDirection: innerWidth < MOBILE_WIDTH ? 'column' : 'row' }}>
         <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
-          <RegionSelect onChange={setRegion} />
+          <RegionSelect onChange={setRegion} regions={regions}/>
         </Box>
         {region && <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
-          <DepartmentSelect region={region} onChange={setDepartment} />
+          <DepartmentSelect onChange={setDepartment} departments={departments[region]}/>
         </Box>}
         {region && department && <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
           <CitySelect department={department} region={region} onChange={setCity} />
@@ -96,38 +100,38 @@ function BrowserHome({ initialData }) {
       </Box>
 
       <Flex sx={{ flexDirection: innerWidth < MOBILE_WIDTH ? 'column' : 'row' }} px={2}>
-        <StatCard data={data.informationAccess} label='ACCÈS À L’INFORMATION'/>
-        <StatCard data={data.numericInterfacesAccess} label='ACCÈS AUX INTERFACES NUMÉRIQUES'/>
+        <StatCard data={data.informationAccess} label='ACCÈS À L’INFORMATION' />
+        <StatCard data={data.numericInterfacesAccess} label='ACCÈS AUX INTERFACES NUMÉRIQUES' />
       </Flex>
       <Flex sx={{ flexDirection: innerWidth < MOBILE_WIDTH ? 'column' : 'row' }} px={2}>
-        <StatCard data={data.numericCompetencies} label='CAPACITÉS D’USAGE DES INTERFACES NUMÉRIQUES'/>
-        <StatCard data={data.administrativeCompetencies} label='COMPÉTENCES ADMINISTRATIVES'/>
+        <StatCard data={data.numericCompetencies} label='CAPACITÉS D’USAGE DES INTERFACES NUMÉRIQUES' />
+        <StatCard data={data.administrativeCompetencies} label='COMPÉTENCES ADMINISTRATIVES' />
       </Flex>
 
 
-      <ComparisonTable/>
+      <ComparisonTable />
 
       <div style={{ margin: '0 10px' }}>
-      <h2>SOURCES DES DONNÉES</h2>
+        <h2>SOURCES DES DONNÉES</h2>
 
-      <p>Les données utilisées pour construire cet indicateur de fragilité numérique proviennent de bases publiées en Open Data (data.gouv.fr, Insee ) :</p>
+        <p>Les données utilisées pour construire cet indicateur de fragilité numérique proviennent de bases publiées en Open Data (data.gouv.fr, Insee ) :</p>
 
-      <p>INSEE :</p>
+        <p>INSEE :</p>
 
-      <ul>
-        <li><a href="https://www.insee.fr/fr/statistiques/4228434" target="_blank">Population en 2016 Recensement de la population - Base infracommunale (IRIS)</a></li>
-        <li><a href="https://www.insee.fr/fr/statistiques/4228428" target="_blank">Couples - Familles - Ménages en 2016 - Recensement de la population - Base infracommunale (IRIS)</a></li>
-        <li><a href="https://www.insee.fr/fr/statistiques/4228430" target="_blank">Diplômes - Formation en 2016 - Recensement de la population - Base infracommunale (IRIS)</a></li>
-        <li><a href="https://www.insee.fr/fr/statistiques/4190004" target="_blank">Revenus et pauvreté des ménages en 2016 - Dispositif Fichier localisé social et fiscal (Filosofi)</a></li>
-        <li><a href="https://www.insee.fr/fr/statistiques/4217503" target="_blank">Revenus, pauvreté et niveau de vie en 2015 (IRIS) - Dispositif Fichier localisé social et fiscal (Filosofi)</a></li>
-      </ul>
+        <ul>
+          <li><a href="https://www.insee.fr/fr/statistiques/4228434" target="_blank">Population en 2016 Recensement de la population - Base infracommunale (IRIS)</a></li>
+          <li><a href="https://www.insee.fr/fr/statistiques/4228428" target="_blank">Couples - Familles - Ménages en 2016 - Recensement de la population - Base infracommunale (IRIS)</a></li>
+          <li><a href="https://www.insee.fr/fr/statistiques/4228430" target="_blank">Diplômes - Formation en 2016 - Recensement de la population - Base infracommunale (IRIS)</a></li>
+          <li><a href="https://www.insee.fr/fr/statistiques/4190004" target="_blank">Revenus et pauvreté des ménages en 2016 - Dispositif Fichier localisé social et fiscal (Filosofi)</a></li>
+          <li><a href="https://www.insee.fr/fr/statistiques/4217503" target="_blank">Revenus, pauvreté et niveau de vie en 2015 (IRIS) - Dispositif Fichier localisé social et fiscal (Filosofi)</a></li>
+        </ul>
 
-      <p>Data.Gouv.fr :</p>
+        <p>Data.Gouv.fr :</p>
 
-      <ul>
-        <li><a href="https://www.data.gouv.fr/fr/datasets/le-marche-du-haut-et-tres-haut-debit-fixe-deploiements/" target="_blank">Le marché du haut et très haut débit fixe (déploiements)</a></li>
-        <li><a href="https://www.data.gouv.fr/fr/datasets/mon-reseau-mobile/" target="_blank">Mon réseau mobile</a></li>
-      </ul>
+        <ul>
+          <li><a href="https://www.data.gouv.fr/fr/datasets/le-marche-du-haut-et-tres-haut-debit-fixe-deploiements/" target="_blank">Le marché du haut et très haut débit fixe (déploiements)</a></li>
+          <li><a href="https://www.data.gouv.fr/fr/datasets/mon-reseau-mobile/" target="_blank">Mon réseau mobile</a></li>
+        </ul>
       </div>
 
       <Print />
@@ -167,7 +171,8 @@ export const getStaticProps = () => {
           "percentOf65+People": 0.17,
           "percentOfPeopleWithoutGrade": 0.16
         }
-      }
+      },
+      departments
     }
   }
 }

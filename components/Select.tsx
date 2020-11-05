@@ -4,6 +4,8 @@ import { QueryStatus } from "react-query";
 import { Box, Flex } from "rebass";
 import Input from "./presentational/Input";
 import Button from "./presentational/Button";
+import { useWindow } from "../contexts/browser-context";
+import { MOBILE_WIDTH } from "../constants/constants";
 
 export interface SelectProps {
     readonly text: string;
@@ -38,6 +40,9 @@ export function InMemorySelect(props: Omit<SelectProps, 'status' | 'onInputValue
 export function Select({ text, onSelectedItemChange, data, onInputValueChange, status, inputValue }: SelectProps) {
     const [isInputFocused, setIsInputFocused] = useState(false);
 
+    const {innerWidth} = useWindow();
+    const isDesktopWidth = innerWidth > MOBILE_WIDTH;
+
 
     const {
         isOpen,
@@ -59,7 +64,7 @@ export function Select({ text, onSelectedItemChange, data, onInputValueChange, s
         inputValue: inputValue
     })
 
-    return <Box sx={{ position: 'relative' }} className='no-print'>
+    return <Box className='no-print'>
         <label {...getLabelProps()} style={{ fontWeight: 'bold' }}>{text}</label>
         <Flex {...getComboboxProps()} sx={{
             outline: isInputFocused ? 'auto 1px' : undefined,
@@ -90,8 +95,7 @@ export function Select({ text, onSelectedItemChange, data, onInputValueChange, s
             visibility: !isOpen ? 'hidden' : undefined,
             position: 'absolute',
             background: 'White',
-            width: '100%',
-            overflowY: 'scroll'
+            width: isDesktopWidth ? '24.2%' : '98.1%'
         }}
             ariaHidden={isOpen}
         >

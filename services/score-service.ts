@@ -19,6 +19,7 @@ export interface ScoreProvider {
 
 class FakeScoreService implements ScoreProvider {
     constructor(private readonly delay: number) { }
+    
     async getDepartmentScore(region: string, innerPage?: number): Promise<ScoreInfo> {
         return new Promise(resolve => setTimeout(() => resolve({
             asideInformation: {

@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { useQuery } from "react-query";
+import { useEffect, useRef, useState } from "react";
+import { QueryStatus, useQuery } from "react-query";
 import { Box, Flex } from "rebass";
 import CitySelect from "../components/CitySelect";
 import DepartmentSelect from "../components/DepartmentSelect";
@@ -14,9 +14,10 @@ import { MOBILE_WIDTH } from '../constants/constants';
 import { BrowserContextWrapper, useWindow } from "../contexts/browser-context";
 import departments from '../constants/departments.json';
 import { StaticDataContext, useStaticData } from '../contexts/static-data-context';
+import { indexService } from "../services/index-service";
 
-const StatCard = ({ label, data }) => {
-
+const StatCard = ({ label, data , nationalData}) => {
+  console.log("nationalData",nationalData);
   const { innerWidth } = useWindow();
 
   return <Box bg={'Lighter grey'} px={20} mx={innerWidth < MOBILE_WIDTH ? 0 : 10} width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 2} mb={10} sx={{ height: '190px' }}>
@@ -24,9 +25,9 @@ const StatCard = ({ label, data }) => {
     <Flex sx={{ alignItems: 'flex-end' }}>
       <span style={{ fontSize: `8em`, lineHeight: '0.8em' }}>{data.global}</span>
       <span>
-        {data.globalNational && <Comparison label={'NATIONAL'} reference={data.globalNational} value={data.global} />}
-        {data.globalRegion && <Comparison label={'REGION'} reference={data.globalRegion} value={data.global} />}
-        {data.globalDept && <Comparison label={'DEPARTEMENT'} reference={data.globalDept} value={data.global} />}
+        {nationalData.global && <Comparison label={'NATIONAL'} reference={nationalData.global} value={data.global} />}
+        {nationalData.globalRegion && <Comparison label={'REGION'} reference={nationalData.globalRegion} value={data.global} />}
+        {nationalData.globalDept && <Comparison label={'DEPARTEMENT'} reference={nationalData.globalDept} value={data.global} />}
       </span>
     </Flex>
   </Box>
@@ -61,15 +62,32 @@ function BrowserHome() {
   const [neighbour, setNeighbour] = useState('');
   const { innerWidth } = useWindow();
 
+  useEffect(()=>{
+    setDepartment('');
+  }, [region]);
+
+  useEffect(()=>{
+    setCity('');
+  },[region, department]);
+
+  useEffect(()=>{
+    setNeighbour('');
+  },[region, department, city]);
+
   const regions = useRef(Object.keys(departments)).current;
 
   const { data, status } = useQuery(`${region}-${department}-${city}-${neighbour}`, () => initialData, {
     initialData
   });
 
+  const { data: nationalData, status: nationalStatus } = useQuery(`national`, () => indexService.indexNational());
+;
+
   const address = ['NATIONAL', region, department, city, neighbour].filter(name => name !== '').join(' > ');
+  if(nationalStatus===QueryStatus.Loading) return <><div></div></>;
   return (
     <>
+
       <Head>
         <title>INR - indice global de fragilité numérique</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -89,7 +107,7 @@ function BrowserHome() {
         {region && <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
           <DepartmentSelect onChange={setDepartment} departments={departments[region]} />
         </Box>}
-        {region && department && <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
+        {region && department &&  <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
           <CitySelect department={department} region={region} onChange={setCity} />
         </Box>}
         {region && department && city && <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
@@ -110,12 +128,12 @@ function BrowserHome() {
       </Box>
 
       <Flex sx={{ flexDirection: innerWidth < MOBILE_WIDTH ? 'column' : 'row' }} px={2}>
-        <StatCard data={data.informationAccess} label='ACCÈS À L’INFORMATION' />
-        <StatCard data={data.numericInterfacesAccess} label='ACCÈS AUX INTERFACES NUMÉRIQUES' />
+        <StatCard data={data.informationAccess} nationalData={nationalData.information_access} label='ACCÈS À L’INFORMATION' />
+        <StatCard data={data.numericInterfacesAccess}  nationalData={nationalData.numeric_interfaces_access} label='ACCÈS AUX INTERFACES NUMÉRIQUES' />
       </Flex>
       <Flex sx={{ flexDirection: innerWidth < MOBILE_WIDTH ? 'column' : 'row' }} px={2}>
-        <StatCard data={data.numericCompetencies} label='CAPACITÉS D’USAGE DES INTERFACES NUMÉRIQUES' />
-        <StatCard data={data.administrativeCompetencies} label='COMPÉTENCES ADMINISTRATIVES' />
+        <StatCard data={data.numericCompetencies} nationalData={nationalData.numeric_competencies} label='CAPACITÉS D’USAGE DES INTERFACES NUMÉRIQUES' />
+        <StatCard data={data.administrativeCompetencies} nationalData={nationalData.administrative_competencies} label='COMPÉTENCES ADMINISTRATIVES' />
       </Flex>
 
 
@@ -161,7 +179,6 @@ export const getStaticProps = () => {
         global: 145,
         "informationAccess": {
           "global": 150,
-          "globalNational": 130,
           "globalRegion": 170,
           "globalDept": 154,
           "monoparentalFamiliesPercent": 0.25,

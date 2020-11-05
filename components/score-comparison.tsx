@@ -12,14 +12,13 @@ export enum Tab {
 }
 
 export interface CurrentEntityComparisonProps {
-    readonly region?: string;
-    readonly department?: string;
-    readonly city?: string;
-    readonly neighbour?: string;
+    readonly region: string;
+    readonly department: string;
+    readonly city: string;
+    readonly neighbour: string;
 }
 
 export function CurrentEntityComparison({ region, department, city, neighbour }: CurrentEntityComparisonProps) {
-
     if (region) {
         if (department) {
             if (city) {
@@ -38,23 +37,24 @@ export function CurrentEntityComparison({ region, department, city, neighbour }:
 
 export function DepartmentScoreComparison() {
     const [page, setPage] = useState(1);
-    const { data: _scoreInfo, status} = useQuery<ScoreInfo>(`score-infos-Loire-Atlantique-page-${page}`, () => scoreService.getDepartmentScore('Loire Atlantique', page));
+    const { data: _scoreInfo, status } = useQuery<ScoreInfo>(`score-infos-Loire-Atlantique-page-${page}`, () => scoreService.getDepartmentScore('Loire Atlantique', page));
 
-    const scoreInfo = useRef(_scoreInfo);
+    const [scoreInfo, setScoreInfo] = useState(_scoreInfo);
 
     useEffect(() => {
         if (_scoreInfo) {
-            scoreInfo.current = _scoreInfo;
+            setScoreInfo(_scoreInfo);
         }
     }, [_scoreInfo]);
 
-    if (!scoreInfo.current) {
+    if (!scoreInfo) {
         return <></>;
     }
 
     return <ScoreComparison
-        scoreInfo={scoreInfo.current}
+        scoreInfo={scoreInfo}
         onNextPage={() => setPage(p => p + 1)}
+        onPreviousPage={() => setPage(p => p > 2 ? p - 1 : 1)}
         page={page}
         status={status}
     />;
@@ -62,26 +62,24 @@ export function DepartmentScoreComparison() {
 
 export function RegionScoreComparison() {
     const { data: _scoreInfo } = useQuery<ScoreInfo>(`score-infos-Bretagne`, () => scoreService.getRegionScore('Bretagne'));
-
-    const scoreInfo = useRef(_scoreInfo);
+    const [scoreInfo, setScoreInfo] = useState(_scoreInfo);
 
     useEffect(() => {
         if (_scoreInfo) {
-            scoreInfo.current = _scoreInfo;
+            setScoreInfo(_scoreInfo);
         }
     }, [_scoreInfo]);
 
 
-    if (!scoreInfo.current) {
+    if (!scoreInfo) {
         return <></>;
     }
 
-    return <ScoreComparison scoreInfo={scoreInfo.current} />;
+    return <ScoreComparison scoreInfo={scoreInfo} />;
 }
 
-function ScoreComparison({ scoreInfo, page, onNextPage, status }: { scoreInfo: ScoreInfo, page?: number, onNextPage?: () => void, status: QueryStatus}) {
+function ScoreComparison({ scoreInfo, page, onNextPage, onPreviousPage, status }: { scoreInfo: ScoreInfo, page?: number, onNextPage?: () => void, onPreviousPage?: () => void, status: QueryStatus }) {
     const [tab, setTab] = useState<Tab>(Tab.ASIDE);
-
     const handleTabClick = (event: any) => {
         setTab(event.target.innerText);
     };
@@ -98,9 +96,11 @@ function ScoreComparison({ scoreInfo, page, onNextPage, status }: { scoreInfo: S
                 }
             </div>
             {
-                page && onNextPage && <>
+                page && tab === Tab.INNER && <>
                     <div>Page {page}</div>
-                    {status !== QueryStatus.Loading && <button onClick={() => onNextPage()}>Next</button>}
+                    {onPreviousPage && status !== QueryStatus.Loading && <button onClick={() => onPreviousPage()}>Previous</button>}
+                    {onNextPage && status !== QueryStatus.Loading && <button onClick={() => onNextPage()}>Next</button>}
+
                 </>
             }
 

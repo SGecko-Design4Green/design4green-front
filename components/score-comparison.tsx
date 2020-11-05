@@ -1,19 +1,50 @@
 import React, { useMemo, useState } from 'react';
 import { QueryStatus, useQuery } from 'react-query';
-import { Box, Flex } from "rebass";
 import { useTable } from 'react-table'
 import { scoreService, ScoreInfo, Score } from '../services/score-service';
 import Button from './presentational/Button';
 import { MOBILE_WIDTH } from '../constants/constants';
 import { useWindow } from '../contexts/browser-context';
 
-enum Tab {
+export enum Tab {
     ASIDE = 'Autour de moi',
     INNER = 'Dans moi',
 }
 
-export default function ScoreComparison({ }: any) {
+export interface CurrentEntityComparisonProps {
+    readonly region?: string;
+    readonly department?: string;
+    readonly city?: string;
+    readonly neighbour?: string;
+}
+
+export function CurrentEntityComparison({ region, department, city, neighbour }: CurrentEntityComparisonProps) {
+    return <>{
+        region
+            ? department
+                ? city
+                    ? neighbour
+                        ? <>{/*NeihgbourScoreComparison*/}</>
+                        : <>{/*CityScoreComparison*/}</>
+                    : <DepartmentScoreComparison />
+                : <RegionScoreComparison />
+            : <></>
+    }</>
+}
+
+export function DepartmentScoreComparison() {
+    const { data: scoreInfo, status } = useQuery<ScoreInfo>(`score-infos-Loire-Atlantique`, () => scoreService.getDepartmentScore('Loire Atlantique'));
+
+    return <ScoreComparison scoreInfo={scoreInfo} status={status} />;
+}
+
+export function RegionScoreComparison() {
     const { data: scoreInfo, status } = useQuery<ScoreInfo>(`score-infos-Bretagne`, () => scoreService.getRegionScore('Bretagne'));
+
+    return <ScoreComparison scoreInfo={scoreInfo} status={status} />;
+}
+
+function ScoreComparison({ scoreInfo, status }: { scoreInfo: ScoreInfo, status: QueryStatus }) {
     const [tab, setTab] = useState<Tab>(Tab.ASIDE);
 
     const handleTabClick = (event: any) => {
@@ -29,11 +60,11 @@ export default function ScoreComparison({ }: any) {
             <div>
                 <Button onClick={handleTabClick}>{Tab.ASIDE}</Button><Button onClick={handleTabClick}>{Tab.INNER}</Button>
             </div>
-            <div style={{overflowX:"auto"}} >
-            {tab === Tab.ASIDE
-                ? <ComparisonTable scoreInfo={scoreInfo.asideInformation} />
-                : <ComparisonTable scoreInfo={scoreInfo.innerInformation} />
-            }
+            <div style={{ overflowX: "auto" }} >
+                {tab === Tab.ASIDE
+                    ? <ComparisonTable scoreInfo={scoreInfo.asideInformation} />
+                    : <ComparisonTable scoreInfo={scoreInfo.innerInformation} />
+                }
             </div>
 
         </>
@@ -45,7 +76,7 @@ export default function ScoreComparison({ }: any) {
 
 function ComparisonTable({ scoreInfo }: { scoreInfo: Record<string, Score> }) {
 
-    const {innerWidth} = useWindow();
+    const { innerWidth } = useWindow();
     const isBrowserWidth = innerWidth > MOBILE_WIDTH;
 
     const columns: any = useMemo(

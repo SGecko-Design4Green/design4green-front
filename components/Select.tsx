@@ -11,10 +11,10 @@ export interface SelectProps {
     readonly data?: string[];
     readonly onInputValueChange: (item: any) => void;
     readonly status: QueryStatus
-    readonly value: string;
+    readonly inputValue?: string;
 }
 
-export function InMemorySelect(props: Omit<SelectProps, 'status' | 'onInputValueChange' | 'value'>) {
+export function InMemorySelect(props: Omit<SelectProps, 'status' | 'onInputValueChange' | 'inputValue'>) {
     const [inputValue, setInputValue] = useState('');
     const [matchingData, setMatchingData] = useState([...props.data]);
 
@@ -30,12 +30,12 @@ export function InMemorySelect(props: Omit<SelectProps, 'status' | 'onInputValue
             setInputValue(inputValue);
             setMatchingData(props.data.filter(d => d.toLocaleLowerCase().includes(inputValue.toLocaleLowerCase())))
         }}
-        value={inputValue}
+        inputValue={inputValue}
     />;
 }
 
 
-export function Select({ text, onSelectedItemChange, data, onInputValueChange, status, value }: SelectProps) {
+export function Select({ text, onSelectedItemChange, data, onInputValueChange, status, inputValue }: SelectProps) {
     const [isInputFocused, setIsInputFocused] = useState(false);
 
 
@@ -56,7 +56,7 @@ export function Select({ text, onSelectedItemChange, data, onInputValueChange, s
         onSelectedItemChange: ({ selectedItem }) => {
             onSelectedItemChange(selectedItem);
         },
-        inputValue: value
+        inputValue: inputValue
     })
 
     return <Box sx={{ position: 'relative' }} className='no-print'>

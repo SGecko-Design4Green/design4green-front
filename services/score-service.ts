@@ -1,3 +1,23 @@
+import mockedCities from '../constants/cities-mock.json';
+
+const mockedCityPages: Array<Record<string, Score>> = Object.entries(mockedCities)
+    .reduce(
+        ([name, score]: [string, Score], allPages: any) => {
+
+            const lastPage: Record<string, Score> = allPages[allPages.length - 1];
+
+            if (Object.keys(lastPage).length < 5) {
+                lastPage[name] = score;
+            }
+            else {
+                allPages.push({[name]: score});
+            }
+
+            return allPages;
+        },
+        [{}]
+    );
+
 export interface Score {
     readonly informationAccess: number;
     readonly numericInterfacesAccess: number;
@@ -11,11 +31,31 @@ export interface ScoreInfo {
 }
 
 export interface ScoreProvider {
-    readonly getRegionScore: (region: string) => Promise<ScoreInfo>;
+    readonly getRegionScore: (region: string, innerPage?: number) => Promise<ScoreInfo>;
+    readonly getDepartmentScore: (department: string, innerPage?: number) => Promise<ScoreInfo>;
 }
 
 class FakeScoreService implements ScoreProvider {
     constructor(private readonly delay: number) { }
+    async getDepartmentScore(region: string, innerPage?: number): Promise<ScoreInfo> {
+        return new Promise(resolve => setTimeout(() => resolve({
+            asideInformation: {
+                'Vendée': {
+                    informationAccess: 123,
+                    numericInterfacesAccess: 321,
+                    administrativeCompetencies: 456,
+                    numericCompetencies: 654,
+                },
+                'Mayenne': {
+                    informationAccess: 300,
+                    numericInterfacesAccess: 300,
+                    administrativeCompetencies: 300,
+                    numericCompetencies: 300,
+                }
+            },
+            innerInformation: mockedCityPages[innerPage ?? 0]
+        }), this.delay))
+    }
 
     async getRegionScore(region: string): Promise<ScoreInfo> {
         return new Promise(resolve => setTimeout(() => resolve({

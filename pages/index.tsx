@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { Box, Flex } from "rebass";
 import CitySelect from "../components/CitySelect";
@@ -9,10 +9,11 @@ import Head from 'next/head'
 import Comparison from '../components/presentational/Comparison';
 import Button from "../components/presentational/Button";
 import Image from "next/image";
-import ComparisonTable from '../components/ScoreComparison';
+import { CurrentEntityComparison } from '../components/score-comparison';
 import { MOBILE_WIDTH } from '../constants/constants';
 import { BrowserContextWrapper, useWindow } from "../contexts/browser-context";
-import departments from '../constants/departments.json'
+import departments from '../constants/departments.json';
+import { StaticDataContext, useStaticData } from '../contexts/static-data-context';
 
 const StatCard = ({ label, data }) => {
 
@@ -40,11 +41,20 @@ const Print = () => {
 }
 
 export default function Home(props) {
-  return <BrowserContextWrapper><BrowserHome {...props} /></BrowserContextWrapper>;
+  return (
+    <StaticDataContext.Provider value={props}>
+      <BrowserContextWrapper>
+        <BrowserHome />
+      </BrowserContextWrapper>
+    </StaticDataContext.Provider>
+  );
 }
 
 
-function BrowserHome({ initialData, departments }) {
+function BrowserHome() {
+
+  const { initialData, departments } = useStaticData();
+
   const [region, setRegion] = useState('');
   const [department, setDepartment] = useState('');
   const [city, setCity] = useState('');
@@ -74,10 +84,10 @@ function BrowserHome({ initialData, departments }) {
 
       <Flex sx={{ flexDirection: innerWidth < MOBILE_WIDTH ? 'column' : 'row' }}>
         <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
-          <RegionSelect onChange={setRegion} regions={regions}/>
+          <RegionSelect onChange={setRegion} regions={regions} />
         </Box>
         {region && <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
-          <DepartmentSelect onChange={setDepartment} departments={departments[region]}/>
+          <DepartmentSelect onChange={setDepartment} departments={departments[region]} />
         </Box>}
         {region && department && <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
           <CitySelect department={department} region={region} onChange={setCity} />
@@ -109,7 +119,12 @@ function BrowserHome({ initialData, departments }) {
       </Flex>
 
 
-      <ComparisonTable />
+      <CurrentEntityComparison
+        region={region}
+        department={department}
+        city={city}
+        neighbour={neighbour}
+      />
 
       <div style={{ margin: '0 10px' }}>
         <h2>SOURCES DES DONNÉES</h2>

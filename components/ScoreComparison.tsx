@@ -48,7 +48,7 @@ function ComparisonTable({ scoreInfo }: { scoreInfo: Record<string, Score> }) {
     const {innerWidth} = useWindow();
     const isBrowserWidth = innerWidth > MOBILE_WIDTH;
 
-    const columns = useMemo(
+    const columns: any = useMemo(
         () => [
             {
                 Header: "Localisation",

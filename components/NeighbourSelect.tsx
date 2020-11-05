@@ -8,7 +8,7 @@ import { Select } from "./Select";
 export default function NeighbourSelect({ region, department, city, onChange }) {
     const [neighbourQuery, setNeighbourQuery] = useState('');
     const { data: neighbours, status } = useQuery<string[]>(
-        `neighbours-${neighbourQuery}`,
+        `neighbours-${region}-${department}-${city}`,
         () => autocompleteService.autocompleteNeighbours({ query: neighbourQuery, region, department, city })
     );
 

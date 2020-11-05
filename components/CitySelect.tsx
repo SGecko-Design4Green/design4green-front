@@ -6,7 +6,7 @@ import { Select } from "./Select";
 
 export default function CitySelect({region, department, onChange}) {
     const [cityQuery, setCityQuery] = useState('');
-    const { data, status } = useQuery<string[]>(`cities-${region + department + cityQuery}`, () => autocompleteService.autocompleteCities({query: cityQuery, region, department}));
+    const { data, status } = useQuery<string[]>(`cities-${region}-${department}-${cityQuery}`, () => autocompleteService.autocompleteCities({query: cityQuery, region, department}));
   
     return <Select
         data={data}
@@ -14,5 +14,5 @@ export default function CitySelect({region, department, onChange}) {
         onSelectedItemChange={onChange}
         text="Choisissez une ville:"
         status={status}
-    />
+    />;
 }

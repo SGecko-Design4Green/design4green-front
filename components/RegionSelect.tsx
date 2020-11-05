@@ -7,7 +7,7 @@ import { Select } from "./Select";
 
 export default function RegionSelect({ onChange }) {
     const [regionQuery, setRegionQuery] = useState('');
-    const { data: regions, status } = useQuery<string[]>(`regions-${regionQuery}`, () => autocompleteService.autocompleteRegions({ query: regionQuery}));
+    const { data: regions, status } = useQuery<string[]>(`regions`, () => autocompleteService.autocompleteRegions({ query: regionQuery}), );
 
     return <Select
         data={regions}
@@ -15,5 +15,5 @@ export default function RegionSelect({ onChange }) {
         onSelectedItemChange={onChange}
         text="Choisissez une region:"
         status={status}
-    />
+    />;
 }

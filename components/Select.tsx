@@ -24,7 +24,7 @@ export function Select({ text, onSelectedItemChange, data, onInputValueChange, s
         getInputProps,
         getComboboxProps,
         highlightedIndex,
-        getItemProps,
+        getItemProps
     } = useCombobox({
         items: data || [],
         onInputValueChange: ({ inputValue }) => {
@@ -59,13 +59,15 @@ export function Select({ text, onSelectedItemChange, data, onInputValueChange, s
             </Button>
             </Box>
         </Flex>
+        {/*Menu */}
         <Box {...getMenuProps()} sx={{
             border: "1px solid",
             borderColor: 'Medium',
             visibility: !isOpen ? 'hidden' : undefined,
             position: 'absolute',
             background: 'White',
-            width: '100%'
+            width: '100%',
+            overflowY: 'scroll'
         }}
         ariaHidden={isOpen}
         >

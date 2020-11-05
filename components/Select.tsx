@@ -35,11 +35,12 @@ export function Select({ text, onSelectedItemChange, data, onInputValueChange, s
         }
     })
 
-    return <Box sx={{position: 'relative'}} >
-        <label {...getLabelProps()}>{text}</label>
+    return <Box sx={{position: 'relative'}} className='no-print'>
+        <label {...getLabelProps()} style={{fontWeight: 'bold'}}>{text}</label>
         <Flex {...getComboboxProps()} sx={{
             outline: isInputFocused ? 'auto 1px' : undefined,
-            outlineColor: 'Medium'
+            outlineColor: 'Medium',
+            marginTop: '5px'
         }}>
             <Box width={0.85}>
                 <Input

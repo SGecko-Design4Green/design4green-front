@@ -16,7 +16,7 @@ export default function NeighbourSelect({ region, department, city, onChange }) 
         data={neighbours}
         onInputValueChange={setNeighbourQuery}
         onSelectedItemChange={onChange}
-        text="Choisissez une region:"
+        text="Choisissez un nom Iris:"
         status={status}
     />;
 }

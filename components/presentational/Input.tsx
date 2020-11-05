@@ -7,7 +7,7 @@ export default forwardRef(function (props: RebassInputProps, ref: Ref<any>) {
             {...props}
             ref={ref}
             sx={{
-                borderColor: "Medium", borderRadius: 0, ':focus': {
+                borderColor: "Medium", borderRadius: 0, height: '48px', ':focus': {
                     borderRadius: 0,
                     borderColor: "Medium",
                     outline: 0

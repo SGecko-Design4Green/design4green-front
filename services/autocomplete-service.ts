@@ -12,11 +12,9 @@ class BackendAutocompletor implements Autocompletor {
 
     async autocompleteRegions({ query }: { query: any }): Promise<string[]> {
         const params = new URLSearchParams({
-            q: query,
-            page: '1',
-            size: '5'
+            q: query
         })
-        const res = await fetch(`${this.url}/regions?${params.toString()}`);
+        const res = await fetch(`${this.url}/regions`);
         return res.json();
     };
 
@@ -82,4 +80,5 @@ class FakeAutocompletor implements Autocompletor {
     }
 }
 
-export const autocompleteService: Autocompletor = new FakeAutocompletor(500);
+export const autocompleteService: Autocompletor = new BackendAutocompletor('http://vps-2f3ff050.vps.ovh.net:8443/api');
+// export const autocompleteService: Autocompletor = new FakeAutocompletor(500);

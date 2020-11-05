@@ -1,4 +1,3 @@
-import { create } from 'domain';
 import { FC, createContext, useLayoutEffect, useState, useContext } from 'react';
 
 export const BrowserContext = createContext<{ window: Window }>(undefined);

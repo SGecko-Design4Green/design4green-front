@@ -9,6 +9,8 @@ import Head from 'next/head'
 import Comparison from '../components/presentational/Comparison';
 import Button from "../components/presentational/Button";
 import Image from "next/image";
+import ComparisonTable from '../components/ScoreComparison';
+
 const MOBILE_WIDTH = 1310;
 
 const StatCard = ({ windowWidth, label, data }) => {
@@ -39,6 +41,7 @@ export default function Home({ initialData }) {
   const [city, setCity] = useState('');
   const [neighbour, setNeighbour] = useState('');
   const [windowWidth, setWindowWidth] = useState(0);
+
   useLayoutEffect(() => {
     setWindowWidth(window.innerWidth);
   }, []);
@@ -98,6 +101,8 @@ export default function Home({ initialData }) {
         <StatCard data={data.administrativeCompetencies} label='COMPÉTENCES ADMINISTRATIVES' windowWidth={windowWidth} />
       </Flex>
 
+
+      <ComparisonTable/>
 
       <div style={{ margin: '0 10px' }}>
       <h2>SOURCES DES DONNÉES</h2>

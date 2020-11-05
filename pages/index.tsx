@@ -10,11 +10,14 @@ import Comparison from '../components/presentational/Comparison';
 import Button from "../components/presentational/Button";
 import Image from "next/image";
 import ComparisonTable from '../components/ScoreComparison';
+import { MOBILE_WIDTH } from '../constants/constants';
+import { BrowserContextWrapper, useWindow } from "../contexts/browser-context";
 
-const MOBILE_WIDTH = 1310;
+const StatCard = ({label, data }) => {
 
-const StatCard = ({ windowWidth, label, data }) => {
-  return <Box bg={'Lighter grey'} px={20} mx={windowWidth < MOBILE_WIDTH ? 0 : 10} width={windowWidth < MOBILE_WIDTH ? 1 : 1 / 2} mb={10} sx={{ height: '190px' }}>
+  const {innerWidth} = useWindow();
+
+  return <Box bg={'Lighter grey'} px={20} mx={innerWidth < MOBILE_WIDTH ? 0 : 10} width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 2} mb={10} sx={{ height: '190px' }}>
     <h3>{label}</h3>
     <Flex sx={{ alignItems: 'flex-end' }}>
       <span style={{ fontSize: `8em`, lineHeight: '0.8em' }}>{data.global}</span>
@@ -35,16 +38,16 @@ const Print = () => {
   return <div className='no-print' style={{ position: "fixed", bottom: "10px", right: "10px" }}><Button onClick={() => print()}>Print</Button></div>
 }
 
-export default function Home({ initialData }) {
+export default function Home(props) {
+  return <BrowserContextWrapper><BrowserHome {...props}/></BrowserContextWrapper>;
+}
+
+function BrowserHome({ initialData }) {
   const [region, setRegion] = useState('');
   const [department, setDepartment] = useState('');
   const [city, setCity] = useState('');
   const [neighbour, setNeighbour] = useState('');
-  const [windowWidth, setWindowWidth] = useState(0);
-
-  useLayoutEffect(() => {
-    setWindowWidth(window.innerWidth);
-  }, []);
+  const {innerWidth} = useWindow();
 
   const { data, status } = useQuery(`${region}-${department}-${city}-${neighbour}`, () => initialData, {
     initialData
@@ -65,17 +68,17 @@ export default function Home({ initialData }) {
         <p>L’indice de fragilité numérique des territoires a été produit dans le cadre de l’IncubO du SGAR Occitanie avec le concours de l’ANSA en partenariat avec la Mednum, grâce au soutien du Fond de transformation pour l’action publique.</p>
       </div>
 
-      <Flex sx={{ flexDirection: windowWidth < MOBILE_WIDTH ? 'column' : 'row' }}>
-        <Box width={windowWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
+      <Flex sx={{ flexDirection: innerWidth < MOBILE_WIDTH ? 'column' : 'row' }}>
+        <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
           <RegionSelect onChange={setRegion} />
         </Box>
-        {region && <Box width={windowWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
+        {region && <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
           <DepartmentSelect region={region} onChange={setDepartment} />
         </Box>}
-        {region && department && <Box width={windowWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
+        {region && department && <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
           <CitySelect department={department} region={region} onChange={setCity} />
         </Box>}
-        {region && department && city && <Box width={windowWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
+        {region && department && city && <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
           <NeighbourSelect city={city} department={department} region={region} onChange={setNeighbour} />
         </Box>}
       </Flex>
@@ -92,13 +95,13 @@ export default function Home({ initialData }) {
         </Flex>
       </Box>
 
-      <Flex sx={{ flexDirection: windowWidth < MOBILE_WIDTH ? 'column' : 'row' }} px={2}>
-        <StatCard data={data.informationAccess} label='ACCÈS À L’INFORMATION' windowWidth={windowWidth} />
-        <StatCard data={data.numericInterfacesAccess} label='ACCÈS AUX INTERFACES NUMÉRIQUES' windowWidth={windowWidth} />
+      <Flex sx={{ flexDirection: innerWidth < MOBILE_WIDTH ? 'column' : 'row' }} px={2}>
+        <StatCard data={data.informationAccess} label='ACCÈS À L’INFORMATION'/>
+        <StatCard data={data.numericInterfacesAccess} label='ACCÈS AUX INTERFACES NUMÉRIQUES'/>
       </Flex>
-      <Flex sx={{ flexDirection: windowWidth < MOBILE_WIDTH ? 'column' : 'row' }} px={2}>
-        <StatCard data={data.numericCompetencies} label='CAPACITÉS D’USAGE DES INTERFACES NUMÉRIQUES' windowWidth={windowWidth} />
-        <StatCard data={data.administrativeCompetencies} label='COMPÉTENCES ADMINISTRATIVES' windowWidth={windowWidth} />
+      <Flex sx={{ flexDirection: innerWidth < MOBILE_WIDTH ? 'column' : 'row' }} px={2}>
+        <StatCard data={data.numericCompetencies} label='CAPACITÉS D’USAGE DES INTERFACES NUMÉRIQUES'/>
+        <StatCard data={data.administrativeCompetencies} label='COMPÉTENCES ADMINISTRATIVES'/>
       </Flex>
 
 

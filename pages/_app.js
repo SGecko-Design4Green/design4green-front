@@ -1,6 +1,7 @@
 import { ThemeProvider } from 'emotion-theming'
 import { ReactQueryDevtools } from "react-query-devtools";
 import '../styles/globals.css';
+import '../styles/globals.scss';
 
 const theme = {
   colors: {

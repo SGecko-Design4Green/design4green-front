@@ -1,8 +1,11 @@
 import React, { useMemo, useState } from 'react';
-import { Box, Flex } from "rebass";
 import { QueryStatus, useQuery } from 'react-query';
+import { Box, Flex } from "rebass";
 import { useTable } from 'react-table'
 import { scoreService, ScoreInfo, Score } from '../services/score-service';
+import Button from './presentational/Button';
+import { MOBILE_WIDTH } from '../constants/constants';
+import { useWindow } from '../contexts/browser-context';
 
 enum Tab {
     ASIDE = 'Autour de moi',
@@ -23,14 +26,15 @@ export default function ScoreComparison({ }: any) {
 
     return (
         <>
-            <div>Selected tab: {tab}</div>
             <div>
-                <span onClick={handleTabClick}>{Tab.ASIDE}</span><span onClick={handleTabClick}>{Tab.INNER}</span>
+                <Button onClick={handleTabClick}>{Tab.ASIDE}</Button><Button onClick={handleTabClick}>{Tab.INNER}</Button>
             </div>
+            <div style={{overflowX:"auto"}} >
             {tab === Tab.ASIDE
                 ? <ComparisonTable scoreInfo={scoreInfo.asideInformation} />
                 : <ComparisonTable scoreInfo={scoreInfo.innerInformation} />
             }
+            </div>
 
         </>
     )
@@ -40,6 +44,9 @@ export default function ScoreComparison({ }: any) {
 
 
 function ComparisonTable({ scoreInfo }: { scoreInfo: Record<string, Score> }) {
+
+    const {innerWidth} = useWindow();
+    const isBrowserWidth = innerWidth > MOBILE_WIDTH;
 
     const columns = useMemo(
         () => [
@@ -92,7 +99,7 @@ function ComparisonTable({ scoreInfo }: { scoreInfo: Record<string, Score> }) {
     } = tableInstance;
 
     return <>
-        <table {...getTableProps()}>
+        <table {...getTableProps()} style={{ width: isBrowserWidth ? '65%' : '100%' }}>
             <thead>
                 {
                     headerGroups.map(headerGroup => (

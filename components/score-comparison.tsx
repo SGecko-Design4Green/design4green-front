@@ -2,9 +2,10 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { QueryStatus, useQuery } from 'react-query';
 import { useTable } from 'react-table'
 import { scoreService, ScoreInfo, Score } from '../services/score-service';
-import Button from './presentational/Button';
 import { MOBILE_WIDTH } from '../constants/constants';
 import { useWindow } from '../contexts/browser-context';
+import { Flex, Box } from 'rebass';
+import styles from './score-comparison.module.css'
 
 export enum Tab {
     ASIDE = 'Autour de moi',
@@ -78,7 +79,7 @@ export function RegionScoreComparison() {
     return <ScoreComparison scoreInfo={scoreInfo} />;
 }
 
-function ScoreComparison({ scoreInfo, page, onNextPage, onPreviousPage, status }: { scoreInfo: ScoreInfo, page?: number, onNextPage?: () => void, onPreviousPage?: () => void, status: QueryStatus }) {
+function ScoreComparison({ scoreInfo, page, onNextPage, onPreviousPage, status = QueryStatus.Idle }: { scoreInfo: ScoreInfo, page?: number, onNextPage?: () => void, onPreviousPage?: () => void, status?: QueryStatus }) {
     const [tab, setTab] = useState<Tab>(Tab.ASIDE);
     const handleTabClick = (event: any) => {
         setTab(event.target.innerText);
@@ -86,9 +87,12 @@ function ScoreComparison({ scoreInfo, page, onNextPage, onPreviousPage, status }
 
     return (
         <>
-            <div>
-                <Button onClick={handleTabClick}>{Tab.ASIDE}</Button><Button onClick={handleTabClick}>{Tab.INNER}</Button>
-            </div>
+            <Flex flexDirection="row">
+                <Box>
+                    <button onClick={handleTabClick} className={styles.tab}>{Tab.ASIDE}</button>
+                    <button onClick={handleTabClick} className={styles.tab}>{Tab.INNER}</button>
+                </Box>
+            </Flex>
             <div style={{ overflowX: "auto" }} >
                 {tab === Tab.ASIDE
                     ? <ComparisonTable scoreInfo={scoreInfo.asideInformation} />

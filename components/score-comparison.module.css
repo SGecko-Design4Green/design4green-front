@@ -1,0 +1,16 @@
+.tab {
+    background-color: #0053b3;
+    color: white;
+    border: none;
+    margin-right:  5px;
+    height: 2em;
+}
+
+.tab:focus {
+    border: none;
+    outline: none;
+}
+
+.tab:hover {
+    background-color:  #427ec2;
+}

@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { QueryStatus, useQuery } from "react-query";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { QueryStatus, usePaginatedQuery, useQuery } from "react-query";
 import { Box, Flex } from "rebass";
 import CitySelect from "../components/CitySelect";
 import DepartmentSelect from "../components/DepartmentSelect";
@@ -16,6 +16,7 @@ import departments from '../constants/departments.json';
 import { StaticDataContext, useStaticData } from '../contexts/static-data-context';
 import { indexService } from "../services/index-service";
 import type { ForDistrictIndexes } from "../services/index-types";
+import { autocompleteService } from "../services/autocomplete-service";
 
 const StatCard = ({ label, data }) => {
   const { innerWidth } = useWindow();
@@ -51,10 +52,11 @@ export default function Home(props) {
   );
 }
 
+const { initialData } = {
+  initialData: { "global": 92.72245788574219, "global_region": null, "global_dept": null, "global_national": null, "iris_code": null, "information_access": { "global": 87.01314544677734, "global_region": null, "global_dept": null, "global_national": null, "monoparental_families_percent": null, "single_person_percent": null, "number_of_public_service_per_citizen": null, "number_of_public_services": null }, "numeric_interfaces_access": { "global": 93.69023132324219, "global_region": null, "global_dept": null, "global_national": null, "high_speed_internet_access_percent": null, "mobile_network_availability_percent": null, "percent_of_poor_people": null, "available_median_salary": null }, "administrative_competencies": { "global": 87.732177734375, "global_region": null, "global_dept": null, "global_national": null, "unemployed_percent": null, "_15_29_percent": null }, "numeric_competencies": { "global": 101.94441223144531, "global_region": null, "global_dept": null, "global_national": null, "percent_of_65_plus_people": null, "percent_of_people_without_grade": null } },
+};
 
 function BrowserHome() {
-
-  const { initialData, departments } = useStaticData();
 
   const [region, setRegion] = useState('');
   const [department, setDepartment] = useState('');
@@ -62,35 +64,40 @@ function BrowserHome() {
   const [district, setDistrict] = useState('');
   const { innerWidth } = useWindow();
 
-  useEffect(()=>{
+  useEffect(() => {
     setDepartment('');
   }, [region]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setCity('');
-  },[region, department]);
+  }, [region, department]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setDistrict('');
-  },[region, department, city]);
+  }, [region, department, city]);
 
   const regions = useRef(Object.keys(departments)).current;
 
-  const { data, status } = useQuery (`${region}-${department}-${city}-${district}`, () => {
-    if(district){
-      return indexService.indexDistrict(district);
+  const callback = useCallback(() => autocompleteService.autocompleteCities({ query: '', department: department.split(' - ')[0] }), [department]);
+  const { data: cities, status: citiesStatus } = usePaginatedQuery<string[]>(['cities', `${department}`], callback);
+
+  const { data, status } = usePaginatedQuery([`indices`, `${region}-${department}-${city}-${district}`], () => {
+    if (district) {
+      return indexService.indexDistrict(cities[city].districts.find(d => d && d.designation && d.designation === district).code_iris);
     }
-    if(city){
-      return indexService.indexCity(city);
+    if (city) {
+      return indexService.indexCity(cities[city].code_insee);
     }
-    if(department){
+    if (department) {
       return indexService.indexDepartmental(department);
     }
-    if(region){
+    if (region) {
       return indexService.indexRegional(region)
     }
-    return undefined;
-  }, {});
+    return initialData;
+  }, {initialData});
+
+
 
 
   const address = ['NATIONAL', region, department, city, district].filter(name => name !== '').join(' > ');
@@ -116,11 +123,11 @@ function BrowserHome() {
         {region && <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
           <DepartmentSelect onChange={setDepartment} departments={departments[region]} />
         </Box>}
-        {region && department &&  <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
-          <CitySelect department={department} region={region} onChange={setCity} />
+        {region && department && <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
+          <CitySelect department={department} region={region} onChange={setCity} cities={cities} citiesStatus={citiesStatus} />
         </Box>}
         {region && department && city && <Box width={innerWidth < MOBILE_WIDTH ? 1 : 1 / 4} px={2}>
-          <NeighbourSelect city={city} department={department} region={region} onChange={setDistrict} />
+          <NeighbourSelect city={city} department={department} region={region} onChange={setDistrict} districts={cities[city].districts} />
         </Box>}
       </Flex>
 
@@ -128,17 +135,17 @@ function BrowserHome() {
 
       <Box bg={'Lighter grey'} px={20} mx={10} mb={20} sx={{ height: '190px', display: 'flow-root' }}>
         <Flex sx={{ alignItems: 'flex-end' }}>
-          <StatCard data={data}  label='GLOBAL' />
+          <StatCard data={data} label='GLOBAL' />
         </Flex>
       </Box>
 
       <Flex sx={{ flexDirection: innerWidth < MOBILE_WIDTH ? 'column' : 'row' }} px={2}>
-        <StatCard data={data?.information_access}  label='ACCÈS À L’INFORMATION' />
-        <StatCard data={data?.numeric_interfaces_access}   label='ACCÈS AUX INTERFACES NUMÉRIQUES' />
+        <StatCard data={data?.information_access} label='ACCÈS À L’INFORMATION' />
+        <StatCard data={data?.numeric_interfaces_access} label='ACCÈS AUX INTERFACES NUMÉRIQUES' />
       </Flex>
       <Flex sx={{ flexDirection: innerWidth < MOBILE_WIDTH ? 'column' : 'row' }} px={2}>
-        <StatCard data={data?.numeric_competencies}  label='CAPACITÉS D’USAGE DES INTERFACES NUMÉRIQUES' />
-        <StatCard data={data?.administrative_competencies}  label='COMPÉTENCES ADMINISTRATIVES' />
+        <StatCard data={data?.numeric_competencies} label='CAPACITÉS D’USAGE DES INTERFACES NUMÉRIQUES' />
+        <StatCard data={data?.administrative_competencies} label='COMPÉTENCES ADMINISTRATIVES' />
       </Flex>
 
 
@@ -175,55 +182,4 @@ function BrowserHome() {
       <Print />
     </>
   );
-}
-
-export const getStaticProps = () => {
-  return {
-    props: {
-      initialData: {
-        "global": 122.0,
-        "global_region": 91.21476745605469,
-        "global_dept": 90.72703552246094,
-        "global_national": 92.72245788574219,
-        "iris_code": "620410101",
-        "information_access": {
-          "global": 138.1013937,
-          "global_region": 82.14131927490234,
-          "global_dept": 81.04307556152344,
-          "global_national": 87.01314544677734,
-          "monoparental_families_percent": 0.263981667,
-          "single_person_percent": 0.50987131,
-          "number_of_public_service_per_citizen": null,
-          "number_of_public_services": null
-        },
-        "numeric_interfaces_access": {
-          "global": 94.131282267,
-          "global_region": 98.47895812988281,
-          "global_dept": 95.73599243164062,
-          "global_national": 93.69023132324219,
-          "high_speed_internet_access_percent": null,
-          "mobile_network_availability_percent": null,
-          "percent_of_poor_people": null,
-          "available_median_salary": 94.131282267
-        },
-        "administrative_competencies": {
-          "global": 113.387957401,
-          "global_region": 89.73087310791016,
-          "global_dept": 87.63152313232422,
-          "global_national": 87.732177734375,
-          "unemployed_percent": null,
-          "_15_29_percent": 0.21232334
-        },
-        "numeric_competencies": {
-          "global": 104.980538913,
-          "global_region": 98.89559936523438,
-          "global_dept": 100.92508697509766,
-          "global_national": 101.94441223144531,
-          "percent_of_65_plus_people": 0.15139173,
-          "percent_of_people_without_grade": 0.40574318
-        }
-      },
-      departments
-    }
-  }
 }

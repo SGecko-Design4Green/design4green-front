@@ -1,21 +1,31 @@
-import { useState } from "react";
-import { useQuery } from "react-query";
-import { autocompleteService } from "../services/autocomplete-service";
+import { useEffect, useState } from "react";
 import { Select } from "./Select";
 
 
-export default function CitySelect({ region, department, onChange }) {
+export default function CitySelect({ region, department, onChange, cities: data, citiesStatus }) {
     const [cityQuery, setCityQuery] = useState('');
-    const { data, status } = useQuery<string[]>(
-        `cities-${region}-${department}-${cityQuery}`,
-        () => autocompleteService.autocompleteCities({ query: cityQuery, region, department })
-    );
 
-    return <Select
-        data={data}
-        onInputValueChange={setCityQuery}
-        onSelectedItemChange={onChange}
-        text="Choisissez une ville:"
-        status={status}
-    />;
+    const dataAsArray = data ? Object.keys(data) : [];
+    const [cities, setCities] = useState(dataAsArray);
+
+    useEffect(() => {
+        if (data)
+        setCities(Object.keys(data));
+    }, [data]);
+
+    const onInputValueChange = (query) => {
+        setCities(dataAsArray.filter(city => city.includes(query.toUpperCase())));
+        setCityQuery(query);
+    }
+
+    return <>
+        <Select
+            data={cities.slice(0, Math.min(10, cities.length))}
+            onInputValueChange={onInputValueChange}
+            onSelectedItemChange={onChange}
+            text="Choisissez une ville:"
+            status={citiesStatus}
+            inputValue={cityQuery}
+        />
+    </>;
 }

@@ -21,7 +21,7 @@ class BackendIndexService implements IndexService {
     return res.json();
   };
   async indexDistrict(irisCode: string): Promise<ForDistrictIndexes> {
-    const res = await fetch(`${this.url}/district/${irisCode}`);
+    const res = await fetch(`${this.url}/districts/${irisCode}`);
     return res.json();
   };
 
@@ -191,6 +191,6 @@ class StaticIndexService implements IndexService {
     }), this.delay))
   }
 }
-export const indexService: IndexService = new BackendIndexService('http://vps-2f3ff050.vps.ovh.net:8443/api/index');
+export const indexService: IndexService = new BackendIndexService('http://vps-2f3ff050.vps.ovh.net:8080/api/index');
 // export const indexService: IndexService = new StaticIndexService(500);
 

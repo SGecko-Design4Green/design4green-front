@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'emotion-theming'
+import { QueryCache, ReactQueryCacheProvider } from 'react-query';
 import { ReactQueryDevtools } from "react-query-devtools";
 import '../styles/globals.css';
 import '../styles/globals.scss';
@@ -28,10 +29,14 @@ const theme = {
   }
 }
 
+const queryCache = new QueryCache()
+
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
+      <ReactQueryCacheProvider queryCache={queryCache}>
+        <Component {...pageProps} />
+      </ReactQueryCacheProvider>
       <ReactQueryDevtools />
     </ThemeProvider>
   );

@@ -43,7 +43,6 @@ export function Select({ text, onSelectedItemChange, data, onInputValueChange, s
     const {innerWidth} = useWindow();
     const isDesktopWidth = innerWidth > MOBILE_WIDTH;
 
-
     const {
         isOpen,
         getToggleButtonProps,
@@ -73,9 +72,9 @@ export function Select({ text, onSelectedItemChange, data, onInputValueChange, s
         }}>
             <Box width={0.85}>
                 <Input
-                    {...getInputProps()}
                     onFocus={() => setIsInputFocused(true)}
                     onBlur={() => setIsInputFocused(false)}
+                    {...getInputProps()}
                 />
             </Box>
             <Box width={0.15}>

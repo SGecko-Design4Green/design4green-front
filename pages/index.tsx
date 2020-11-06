@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { QueryStatus, usePaginatedQuery, useQuery } from "react-query";
+import { usePaginatedQuery } from "react-query";
 import { Box, Flex } from "rebass";
 import CitySelect from "../components/CitySelect";
 import DepartmentSelect from "../components/DepartmentSelect";
@@ -8,14 +8,12 @@ import RegionSelect from "../components/RegionSelect";
 import Head from 'next/head'
 import Comparison from '../components/presentational/Comparison';
 import Button from "../components/presentational/Button";
-import Image from "next/image";
 import { CurrentEntityComparison } from '../components/score-comparison';
 import { MOBILE_WIDTH } from '../constants/constants';
 import { BrowserContextWrapper, useWindow } from "../contexts/browser-context";
 import departments from '../constants/departments.json';
 import { StaticDataContext, useStaticData } from '../contexts/static-data-context';
 import { indexService } from "../services/index-service";
-import type { ForDistrictIndexes } from "../services/index-types";
 import { autocompleteService } from "../services/autocomplete-service";
 
 const StatCard = ({ label, data }) => {
@@ -97,9 +95,6 @@ function BrowserHome() {
     return initialData;
   }, {initialData});
 
-
-
-
   const address = ['NATIONAL', region, department, city, district].filter(name => name !== '').join(' > ');
   return (
     <>
@@ -109,7 +104,7 @@ function BrowserHome() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div style={{ margin: '0 10px' }}>
-        <Image src='/logo-inr.webp' width={300} height={104} alt="logo INR, Institut du Numérique Responsable" />
+        <img src='/logo-inr.webp' width={300} height={104} alt="logo INR, Institut du Numérique Responsable" />
         <h1>INDICE NATIONAL DE FRAGILITÉ NUMÉRIQUE</h1>
         <p>La fragilité numérique est identifiée sur des critères liés à l'accès au numérique et sur le niveau de compétences de chacun et chacun.</p>
 

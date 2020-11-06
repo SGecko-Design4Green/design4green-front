@@ -18,12 +18,26 @@ export interface ScoreInfo {
 //GET /index/district/{iris-code
 
 export interface ScoreProvider {
+    readonly getRegionsScore: () => Promise<any>;
     readonly getRegionScore: (region: string, innerPage?: number) => Promise<ScoreInfo>;
+    readonly getRegionInScore: (region: string) => Promise<any>;
+    readonly getDeptInScore: (dept: string, page: number) => Promise<any>;
+    readonly getCityDistrict: (code_insee: string) => Promise<any>;
     readonly getDepartmentScore: (department: string, innerPage?: number) => Promise<ScoreInfo>;
 }
 
 class FakeScoreService implements ScoreProvider {
     constructor(private readonly delay: number) { }
+    getDeptInScore(dept: string, page: number): Promise<any> {
+        throw new Error('Method not implemented.');
+    }
+    getCityDistrict(code_insee: string): Promise<any> {
+        throw new Error('Method not implemented.');
+    }
+    getRegionInScore: (region: string) => Promise<any>;
+    getRegionsScore(): Promise<any> {
+        throw new Error('Method not implemented.');
+    }
     
     async getDepartmentScore(region: string, innerPage?: number): Promise<ScoreInfo> {
         return new Promise(resolve => setTimeout(() => resolve({
@@ -83,6 +97,26 @@ class FakeScoreService implements ScoreProvider {
 class BackendScoreService implements ScoreProvider {
     constructor(private readonly url: string){}
     
+    async getRegionInScore(region: string): Promise<any> {
+        const res = await fetch(`${this.url}/index/regional/${region}/in`);
+        return await res.json();
+    }
+
+    async getDeptInScore(dept: string, page: number): Promise<any> {
+        const res = await fetch(`${this.url}/index/departmental/${dept}/in?page=${page}`);
+        return await res.json();
+    }
+
+    async getCityDistrict(code_insee: string): Promise<any> {
+        const res = await fetch(`${this.url}/index/city/${code_insee}/districts`);
+        return await res.json();
+    }
+
+    async getRegionsScore(): Promise<any> {
+        const res = await fetch(`${this.url}/index/regional`);
+        return await res.json();
+    }
+    
     async getRegionScore(region: string, innerPage?: number): Promise<ScoreInfo> {
         const res = await fetch(`${this.url}/index/regional/${region}`);
         return await res.json();
@@ -97,5 +131,5 @@ class BackendScoreService implements ScoreProvider {
     
 }
 
-// export const scoreService: ScoreProvider = new BackendScoreService('http://vps-2f3ff050.vps.ovh.net:8443/api');
-export const scoreService: ScoreProvider = new FakeScoreService(800);
+export const scoreService: ScoreProvider = new BackendScoreService('http://vps-2f3ff050.vps.ovh.net:8080/api');
+//export const scoreService: ScoreProvider = new FakeScoreService(800);

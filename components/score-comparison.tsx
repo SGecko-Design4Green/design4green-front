@@ -8,8 +8,8 @@ import { Flex, Box } from 'rebass';
 import styles from './score-comparison.module.css'
 
 export enum Tab {
-    ASIDE = 'Autour de moi',
-    INNER = 'Dans moi',
+    ASIDE = 'Resultats similaires',
+    INNER = `Resultats au sein de ce niveau`,
 }
 
 export interface CurrentEntityComparisonProps {
@@ -28,58 +28,69 @@ export function CurrentEntityComparison({ region, department, city, district }: 
                 }
                 return <>{/*CityScoreComparison*/}</>;
             }
-            return <DepartmentScoreComparison />;
+            return <DepartmentScoreComparison region={region} department={department} />;
         }
-        return <RegionScoreComparison />;
+        return <RegionScoreComparison region={region} />;
     }
 
     return <></>;
 }
 
-export function DepartmentScoreComparison() {
+export function DepartmentScoreComparison({region,department}) {
     const [page, setPage] = useState(1);
-    const { data: _scoreInfo, status } = useQuery<ScoreInfo>(`score-infos-Loire-Atlantique-page-${page}`, () => scoreService.getDepartmentScore('Loire Atlantique', page));
-
-    const [scoreInfo, setScoreInfo] = useState(_scoreInfo);
+    const { data: _scoreInfoDepartment } = useQuery<ScoreInfo>(`score-departments-${region}`, () => scoreService.getRegionInScore(region));
+    const { data: _scoreInfoInDepartment } = useQuery<ScoreInfo>(`score-in-department-${region}`, () => scoreService.getDeptInScore(department.split(' - ')[0], page));
+    const [asideInformation, setAsideInformation] = useState(_scoreInfoDepartment);
+    const [insideInformation, setInsideInformation] = useState(_scoreInfoInDepartment);
 
     useEffect(() => {
-        if (_scoreInfo) {
-            setScoreInfo(_scoreInfo);
+        if (_scoreInfoDepartment) {
+            setAsideInformation(_scoreInfoDepartment);
         }
-    }, [_scoreInfo]);
+        if (_scoreInfoInDepartment) {
+            setInsideInformation(_scoreInfoInDepartment);
+        }
+    }, [_scoreInfoDepartment, _scoreInfoInDepartment]);
 
-    if (!scoreInfo) {
+    if (!asideInformation || !insideInformation) {
         return <></>;
     }
 
     return <ScoreComparison
-        scoreInfo={scoreInfo}
+        asideInformation={asideInformation}
+        insideInformation={insideInformation}
         onNextPage={() => setPage(p => p + 1)}
         onPreviousPage={() => setPage(p => p > 2 ? p - 1 : 1)}
         page={page}
-        status={status}
+        filter={department}
     />;
 }
 
-export function RegionScoreComparison() {
-    const { data: _scoreInfo } = useQuery<ScoreInfo>(`score-infos-Bretagne`, () => scoreService.getRegionScore('Bretagne'));
-    const [scoreInfo, setScoreInfo] = useState(_scoreInfo);
+export function RegionScoreComparison({region}) {
+    const { data: _scoreInfoRegions } = useQuery<ScoreInfo>(`score-regions`, () => scoreService.getRegionsScore());
+    const { data: _scoreInfoInRegions } = useQuery<ScoreInfo>(`score-in-regions-${region}`, () => scoreService.getRegionInScore(region));
+
+    const [asideInformation, setAsideInformation] = useState(_scoreInfoRegions);
+    const [insideInformation, setInsideInformation] = useState(_scoreInfoInRegions);
 
     useEffect(() => {
-        if (_scoreInfo) {
-            setScoreInfo(_scoreInfo);
+        if (_scoreInfoRegions) {
+            setAsideInformation(_scoreInfoRegions);
         }
-    }, [_scoreInfo]);
+        if(_scoreInfoInRegions){
+            setInsideInformation(_scoreInfoInRegions);
+        }
+    }, [_scoreInfoRegions, _scoreInfoInRegions]);
 
 
-    if (!scoreInfo) {
+    if (!_scoreInfoRegions || !_scoreInfoInRegions) {
         return <></>;
     }
 
-    return <ScoreComparison scoreInfo={scoreInfo} />;
+    return <ScoreComparison asideInformation={asideInformation} insideInformation={insideInformation} filter={region} />;
 }
 
-function ScoreComparison({ scoreInfo, page, onNextPage, onPreviousPage, status = QueryStatus.Idle }: { scoreInfo: ScoreInfo, page?: number, onNextPage?: () => void, onPreviousPage?: () => void, status?: QueryStatus }) {
+function ScoreComparison({ asideInformation, insideInformation, filter, page, onNextPage, onPreviousPage, status = QueryStatus.Idle }: { asideInformation: ScoreInfo, insideInformation: ScoreInfo, filter: string, page?: number, onNextPage?: () => void, onPreviousPage?: () => void, status?: QueryStatus }) {
     const [tab, setTab] = useState<Tab>(Tab.ASIDE);
     const handleTabClick = (event: any) => {
         setTab(event.target.innerText);
@@ -95,8 +106,8 @@ function ScoreComparison({ scoreInfo, page, onNextPage, onPreviousPage, status =
             </Flex>
             <div style={{ overflowX: "auto" }} >
                 {tab === Tab.ASIDE
-                    ? <ComparisonTable scoreInfo={scoreInfo.asideInformation} />
-                    : <ComparisonTable scoreInfo={scoreInfo.innerInformation} />
+                    ? <ComparisonTable scoreInfo={asideInformation} filter={filter} />
+                    : <ComparisonTable scoreInfo={insideInformation} filter={''} />
                 }
             </div>
             {
@@ -115,7 +126,7 @@ function ScoreComparison({ scoreInfo, page, onNextPage, onPreviousPage, status =
 
 
 
-function ComparisonTable({ scoreInfo }: { scoreInfo: Record<string, Score> }) {
+function ComparisonTable({ scoreInfo, filter }: { scoreInfo: any, filter: string }) {
 
     const { innerWidth } = useWindow();
     const isBrowserWidth = innerWidth > MOBILE_WIDTH;
@@ -125,6 +136,10 @@ function ComparisonTable({ scoreInfo }: { scoreInfo: Record<string, Score> }) {
             {
                 Header: "Localisation",
                 accessor: 'localization'
+            },
+            {
+                Header: "Score gloabam",
+                accessor: 'globalScore'
             },
             {
                 Header: "Accès à l'information",
@@ -146,19 +161,18 @@ function ComparisonTable({ scoreInfo }: { scoreInfo: Record<string, Score> }) {
         []
     );
 
+////index/regional/{region}/in
 
-
-    const data = useMemo(
-        () => {
-            return Object.entries(scoreInfo)
-                .map(([localization, score]) => ({
-                    ...score,
-                    localization
-                }))
-        },
-        [scoreInfo]
-    );
-
+const data = Object.entries(scoreInfo).filter(([key])=>key!==filter).map(([key,value]:[string, any]) => {
+    return {
+        "localization": key,
+        "globalScore": value.global.toFixed(2),
+        "informationAccess": value.information_access.global.toFixed(2),
+        "numericInterfacesAccess": value.numeric_interfaces_access.global.toFixed(2),
+        "administrativeCompetencies": value.administrative_competencies.global.toFixed(2),
+        "numericCompetencies": value.numeric_competencies.global.toFixed(2)
+    }
+});
 
     const tableInstance = useTable({ columns, data });
 

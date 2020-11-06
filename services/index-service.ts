@@ -191,6 +191,6 @@ class StaticIndexService implements IndexService {
     }), this.delay))
   }
 }
-export const indexService: IndexService = new BackendIndexService('http://localhost:8000/api/index');
+export const indexService: IndexService = new BackendIndexService('http://vps-2f3ff050.vps.ovh.net:8443/api/index');
 // export const indexService: IndexService = new StaticIndexService(500);
 

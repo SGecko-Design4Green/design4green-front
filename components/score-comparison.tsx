@@ -102,8 +102,8 @@ function ScoreComparison({ scoreInfo, page, onNextPage, onPreviousPage, status =
             {
                 page && tab === Tab.INNER && <>
                     <div>Page {page}</div>
-                    {onPreviousPage && status !== QueryStatus.Loading && <button onClick={() => onPreviousPage()}>Previous</button>}
-                    {onNextPage && status !== QueryStatus.Loading && <button onClick={() => onNextPage()}>Next</button>}
+                    {onPreviousPage && status !== QueryStatus.Loading && <button className={styles.tab} onClick={() => onPreviousPage()}>Previous</button>}
+                    {onNextPage && status !== QueryStatus.Loading && <button className={styles.tab} onClick={() => onNextPage()}>Next</button>}
 
                 </>
             }

@@ -86,5 +86,5 @@ class FakeAutocompletor implements Autocompletor {
     }
 }
 
-// export const autocompleteService: Autocompletor = new BackendAutocompletor('http://vps-2f3ff050.vps.ovh.net:8443/api');
+// export const autocompleteService: Autocompletor = new BackendAutocompletor('http://localhost:8000/api');
 export const autocompleteService: Autocompletor = new FakeAutocompletor(500);

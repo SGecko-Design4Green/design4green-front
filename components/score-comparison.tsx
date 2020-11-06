@@ -16,14 +16,14 @@ export interface CurrentEntityComparisonProps {
     readonly region: string;
     readonly department: string;
     readonly city: string;
-    readonly neighbour: string;
+    readonly district: string;
 }
 
-export function CurrentEntityComparison({ region, department, city, neighbour }: CurrentEntityComparisonProps) {
+export function CurrentEntityComparison({ region, department, city, district }: CurrentEntityComparisonProps) {
     if (region) {
         if (department) {
             if (city) {
-                if (neighbour) {
+                if (district) {
                     return <>{/*NeihgbourScoreComparison*/}</>;
                 }
                 return <>{/*CityScoreComparison*/}</>;

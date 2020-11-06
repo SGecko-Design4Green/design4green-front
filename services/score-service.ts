@@ -12,6 +12,11 @@ export interface ScoreInfo {
     readonly innerInformation: Record<string, Score>;
 }
 
+//GET /index/regional/{name}
+//GET /index/departmental/{name}
+//GET /index/city/{insee}
+//GET /index/district/{iris-code
+
 export interface ScoreProvider {
     readonly getRegionScore: (region: string, innerPage?: number) => Promise<ScoreInfo>;
     readonly getDepartmentScore: (department: string, innerPage?: number) => Promise<ScoreInfo>;
@@ -75,4 +80,22 @@ class FakeScoreService implements ScoreProvider {
 
 }
 
+class BackendScoreService implements ScoreProvider {
+    constructor(private readonly url: string){}
+    
+    async getRegionScore(region: string, innerPage?: number): Promise<ScoreInfo> {
+        const res = await fetch(`${this.url}/index/regional/${region}`);
+        return await res.json();
+    }
+
+
+    async getDepartmentScore(department: string, innerPage?: number): Promise<ScoreInfo> {
+        const res = await fetch(`${this.url}/index/departmental/${department}`);
+        return await res.json();
+    }
+
+    
+}
+
+// export const scoreService: ScoreProvider = new BackendScoreService('http://vps-2f3ff050.vps.ovh.net:8443/api');
 export const scoreService: ScoreProvider = new FakeScoreService(800);

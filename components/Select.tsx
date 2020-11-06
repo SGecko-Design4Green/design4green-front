@@ -14,6 +14,7 @@ export interface SelectProps {
     readonly onInputValueChange: (item: any) => void;
     readonly status: QueryStatus
     readonly inputValue?: string;
+    readonly disabled?: boolean;
 }
 
 export function InMemorySelect(props: Omit<SelectProps, 'status' | 'onInputValueChange' | 'inputValue'>) {
@@ -37,7 +38,7 @@ export function InMemorySelect(props: Omit<SelectProps, 'status' | 'onInputValue
 }
 
 
-export function Select({ text, onSelectedItemChange, data, onInputValueChange, status, inputValue }: SelectProps) {
+export function Select({ text, onSelectedItemChange, data, onInputValueChange, status, inputValue, disabled = false}: SelectProps) {
     const [isInputFocused, setIsInputFocused] = useState(false);
 
     const {innerWidth} = useWindow();
@@ -73,13 +74,16 @@ export function Select({ text, onSelectedItemChange, data, onInputValueChange, s
         }}>
             <Box width={0.85}>
                 <Input
+                    disabled={disabled}
                     {...getInputProps()}
                     onFocus={() => setIsInputFocused(true)}
                     onBlur={() => setIsInputFocused(false)}
+                    placeholder={disabled ? "Cette recherche est désactivée pour l'instant." : undefined}
                 />
             </Box>
             <Box width={0.15}>
                 <Button
+                    disabled={disabled}
                     type="button"
                     {...getToggleButtonProps()}
                     aria-label={'toggle menu'}
